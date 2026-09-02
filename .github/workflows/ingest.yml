@@ -1,6 +1,6 @@
 name: Ingest (list + rotation)
 
-# Daily list install snapshots + 200-skill scrape rotation run on the secondary
+# List install snapshots + 200-skill scrape rotation run every 3 days on the secondary
 # (backend/batch) OIDC budget. skills.sh rate-limits OIDC by Vercel
 # team+project, so this workflow must not consume the primary app Backend
 # budget used by real web/desktop users. Manual dispatch supports a one-shot
@@ -12,14 +12,14 @@ name: Ingest (list + rotation)
 #   VERCEL_TOKEN  # Vercel API token; used to mint a fresh OIDC token per run
 #
 # Vercel OIDC tokens live 12 hours, so they cannot be stored as static GitHub
-# secrets for a daily cron. The "Mint ingest OIDC token" step below issues a
+# secrets for a scheduled cron. The "Mint ingest OIDC token" step below issues a
 # fresh one on every run via `vercel project token`.
 #
 # See docs/developer/ingest-oidc.md
 
 on:
   schedule:
-    - cron: '15 6 * * *' # 06:15 UTC daily
+    - cron: '15 6 */3 * *' # 06:15 UTC every 3 days
   workflow_dispatch:
     inputs:
       mode:

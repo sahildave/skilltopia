@@ -50,7 +50,7 @@ Progress on stderr; JSON summary on stdout.
 
 ## GHA
 
-`.github/workflows/ingest.yml` runs daily list + rotation on a schedule, and
+`.github/workflows/ingest.yml` runs list + rotation every 3 days, and
 supports `workflow_dispatch` with `mode=sweep` toward `MAX_ENRICHED` (1500 or
 1000 fallback). Secrets must come from the **ingest** project, not the app
 Backend.

@@ -64,7 +64,7 @@ On the GitHub repo, set secrets used by `.github/workflows/ingest.yml`
 | `SUPABASE_SERVICE_ROLE_KEY`   | Service role / secret key                                 |
 | `VERCEL_OIDC_TOKEN_SECONDARY` | Preferred: token minted for the **ingest** Vercel project |
 
-Until secondary OIDC plus Supabase secrets are set, the daily cron
+Until secondary OIDC plus Supabase secrets are set, the scheduled ingest
 and `workflow_dispatch` sweep will fail. Local scripts work with Infisical
 `VERCEL_OIDC_TOKEN_SECONDARY` (or `VERCEL_OIDC_TOKEN` fallback).
 
@@ -189,7 +189,7 @@ Pipeline docs: [list-snapshots-pipeline.md](./list-snapshots-pipeline.md),
 
 ## Ongoing (after ramp)
 
-1. Keep GHA **Ingest** enabled (`cron: 15 6 * * *` UTC = list + rotation).
+1. Keep GHA **Ingest** enabled (`cron: 15 6 */3 * *` at 06:15 UTC = list + rotation every 3 days).
 2. Refresh **`VERCEL_OIDC_TOKEN_SECONDARY`** (and optional
    in Infisical when the ingest token expires. GitHub Actions mints its own
    per run from `VERCEL_TOKEN`; the app deploy needs neither.

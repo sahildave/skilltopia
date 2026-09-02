@@ -39,7 +39,7 @@ All scrape, list-snapshots, rotate, enrich, and GHA ingest traffic uses the
 1. Create the ingest project in the **partner Vercel account** (a no-op deploy
    is enough). Enable **OIDC Federation** on that project only for batch work.
 2. OIDC tokens expire after 12 hours, so they cannot be stored as static CI
-   secrets — a daily cron would send an expired one and get a `401`.
+   secrets — a scheduled run would send an expired one and get a `401`.
    - **GitHub Actions:** store the partner account's **`VERCEL_TOKEN`** (a
      Vercel API token) and let `ingest.yml` mint a fresh OIDC token per run.
      Leave `VERCEL_OIDC_TOKEN_SECONDARY` unset there; a stale value would sit

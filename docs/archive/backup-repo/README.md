@@ -48,23 +48,23 @@ Nothing was lost.
 | 32       | 41       | Release CI hardening + updater-key verification                                                              |
 | 33       | 42       | App-shell integration: controller + scheduler + UpdateDialog in App.tsx                                      |
 | 34       | 43       | Manual check: native menu + command-palette entries                                                          |
-| 36       | 44       | # Repo owner avatar on catalog skill card                                                                    |
-| 37       | 45       | # GitHub Sponsors                                                                                            |
-| 38       | 46       | # macOS Developer ID signing and notarization                                                                |
-| 39       | 47       | # Windows code signing                                                                                       |
-| 40       | 48       | # Public Backend API readiness and privacy                                                                   |
-| 41       | 49       | # ProductHunt launch                                                                                         |
-| 42       | 50       | # Mac App Store distribution                                                                                 |
-| 43       | 51       | # Meilisearch full-corpus keyword (evolve to stack A)                                                        |
-| 44       | 52       | # Grow enrichment budget toward 2K+                                                                          |
-| 45       | 53       | # Analytics and install-history snapshots                                                                    |
-| 46       | 54       | # Compare skills                                                                                             |
-| 47       | 55       | # Project-scoped installed skills                                                                            |
-| 48       | 56       | # Local query embedding (remove Qdrant inference from hot path)                                              |
-| 49       | 57       | # Search performance: backend critical path                                                                  |
-| 50       | 58       | # Search performance: progressive keyword-first results                                                      |
-| 51       | 59       | # Hidden Gems and growth discovery rails                                                                     |
-| 52       | 60       | # Cross-ecosystem AI Capability index                                                                        |
+| 36       | 44       | Repo owner avatar on catalog skill card                                                                      |
+| 37       | 45       | GitHub Sponsors                                                                                              |
+| 38       | 46       | macOS Developer ID signing and notarization                                                                  |
+| 39       | 47       | Windows code signing                                                                                         |
+| 40       | 48       | Public Backend API readiness and privacy                                                                     |
+| 41       | 49       | ProductHunt launch                                                                                           |
+| 42       | 50       | Mac App Store distribution                                                                                   |
+| 43       | 51       | Meilisearch full-corpus keyword (evolve to stack A)                                                          |
+| 44       | 52       | Grow enrichment budget toward 2K+                                                                            |
+| 45       | 53       | Analytics and install-history snapshots                                                                      |
+| 46       | 54       | Compare skills                                                                                               |
+| 47       | 55       | Project-scoped installed skills                                                                              |
+| 48       | 56       | Local query embedding (remove Qdrant inference from hot path)                                                |
+| 49       | 57       | Search performance: backend critical path                                                                    |
+| 50       | 58       | Search performance: progressive keyword-first results                                                        |
+| 51       | 59       | Hidden Gems and growth discovery rails                                                                       |
+| 52       | 60       | Cross-ecosystem AI Capability index                                                                          |
 | 53       | 61       | Skill taxonomy + faceted semantic search                                                                     |
 | 54       | 62       | Finalize the skill taxonomy slugs                                                                            |
 | 55       | 63       | Expose categories in the search API response                                                                 |
@@ -82,5 +82,9 @@ Nothing was lost.
 | 72       | 73       | Migrate milestones and issues to the public repo; record number mapping                                      |
 | 73       | 74       | Verify deployment, smoke-test production, confirm ingest goes green                                          |
 | 74       | 75       | Retire the backup repo: archive now, delete 2026-10-02; normalize remotes                                    |
+| 65       | 76       | Repo consolidation: publish backup history to public skilltopia and retire the backup                        |
+| 75       | 77       | Preflight & publish: snapshot, audit, fix CI secret, merge to public main                                    |
+| 76       | 78       | Tracker migration: export PR/issue archive, transfer issues + milestones                                     |
+| 77       | 79       | Verify cutover & retire backup: smoke test, ingest green, archive, delete 2026-10-02                         |
 
-The consolidation epic itself (backup #65, with children #75-#77) transfers after it closes.
+The consolidation epic (backup #65 → #76 here) and its children were transferred after the epic closed.

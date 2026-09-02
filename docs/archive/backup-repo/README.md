@@ -73,8 +73,12 @@ Issue numbers changed on transfer (the public repo's PRs already occupied #1–#
 | 72       | 73       | Migrate milestones and issues to the public repo; record number mapping                                      |
 | 73       | 74       | Verify deployment, smoke-test production, confirm ingest goes green                                          |
 | 74       | 75       | Retire the backup repo: archive now, delete 2026-10-02; normalize remotes                                    |
+| 65       | 76       | Repo consolidation: publish backup history to public skilltopia and retire the backup                        |
+| 75       | 77       | Preflight & publish: snapshot, audit, fix CI secret, merge to public main                                    |
+| 76       | 78       | Tracker migration: export PR/issue archive, transfer issues + milestones                                     |
+| 77       | 79       | Verify cutover & retire backup: smoke test, ingest green, archive, delete 2026-10-02                         |
 
-The consolidation epic itself (backup #65, with children #75-#77) transfers after it closes.
+The consolidation epic (backup #65 → #76 here) and its children were transferred after the epic closed.
 
 Gaps in the backup numbering are the 10 pull requests (which share the issue number
 space and were archived off-GitHub, not transferred) and backup #65/#75-#77, the

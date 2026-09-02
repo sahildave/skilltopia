@@ -9,6 +9,15 @@ milestones and labels, live off-GitHub in the maintainer's backup archive.
 
 Issue numbers changed on transfer (the public repo's PRs already occupied #1–#14).
 
+The table below skips thirteen backup numbers, and all thirteen are accounted for:
+
+- **Pull requests, not issues** (GitHub shares one number sequence between them; PRs
+  cannot be transferred, so they live only in the off-GitHub archive): #16, #18, #20,
+  #29, #35, #61, #62, #63, #64 — the nine merged PRs, all merged.
+- **Deleted before the migration**, so nothing remained to transfer: #24, #25, #26, #27.
+
+Nothing was lost.
+
 ## Issue number mapping (old → new)
 
 | Backup # | Public # | Title                                                                                                        |

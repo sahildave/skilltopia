@@ -1,0 +1,56 @@
+# Repo consolidation cutover report — 2026-09-02
+
+Epic: backup `sahildave/skilltopia-backup#65` — publish the private backup history to the
+public `sahildave/skilltopia` and retire the backup. Children: backup #75 (preflight &
+publish), #76 (tracker migration), #77 (verify & retire).
+
+Most of that epic was executed by hand against GitHub and a local backup archive, so its
+acceptance criteria left no trace in this repository. This report is that trace. Each row
+records what was claimed, where the claim lives, and — where it could be re-derived — the
+command that re-derives it and what that command returned when this report was written
+(2026-09-02, from the integrated `feat/65-repo-consolidation-public` branch).
+
+Nothing here is asserted from memory. A criterion that could not be re-derived from the
+repo or the GitHub API is marked **not re-derivable** and points at the issue comment that
+is its only record.
+
+## 75 — Preflight & publish
+
+| Criterion                                                                                   | Status                                      | Evidence                                                                                                                                                                                                                                                                                                              |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Both tags on remotes; both mirrors exist and `git fsck` clean                               | tags verified; mirrors **not re-derivable** | `git ls-remote --tags origin` → `e54714a … pre-consolidation-private-2026-09-02`; `git ls-remote --tags public` → `9506ea9 … pre-consolidation-public-2026-09-02`. The mirrors live in `~/backups/` off-GitHub; `git fsck` output was never captured — backup #75 comment records only that the mirrors were running. |
+| Secret scan clean; any finding rotated                                                      | **not re-derivable**                        | backup #75 comment (2026-09-02): gitleaks 8.x `--redact`, 104 commits on `public/main..main` and 278 on full history, no leaks found; nothing to rotate. Re-running it needs the pre-merge private tree.                                                                                                              |
+| `release.yml` references only `secrets.TAURI_PRIVATE_KEY`, which `gh secret list` shows     | verified                                    | `grep -n 'secrets.TAURI' .github/workflows/release.yml` → only `secrets.TAURI_PRIVATE_KEY` and `secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD`; `gh secret list -R sahildave/skilltopia` shows `TAURI_PRIVATE_KEY` (2026-07-21). The asymmetry is now documented in `docs/developer/releases.md`.                        |
+| `npm run check:all` recorded                                                                | **not re-derivable at that SHA**            | backup #75 comment records a pass on the published tree after the `e54714a` prettier fix. `check:all` on the current branch is green (this closeout pass ran it).                                                                                                                                                     |
+| `git merge-base --is-ancestor 67550d8 public/main`; merged with green CI and a merge commit | verified                                    | the `is-ancestor` check exits 0.                                                                                                                                                                                                                                                                                      |
+
+## 76 — Tracker migration
+
+| Criterion                                                                            | Status                                                     | Evidence                                                                                                                                                                                                                                                                                                                                      |
+| ------------------------------------------------------------------------------------ | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Archive holds issues, PR exports + patches, milestones, labels; PR #16 spot-checked  | **not re-derivable**                                       | Off-GitHub, at `~/backups/skilltopia-tracker-archive-2026-09-02`. backup #76 comment: 64 issues, 10 PRs + patches, gitleaks clean, PR #16 review comments present.                                                                                                                                                                            |
+| Backup has 0 issues left; public milestone counts match (v1 10/7, v2 8/0, Ideas 2/0) | milestones verified; issue count **deliberately deviated** | `gh api repos/sahildave/skilltopia/milestones` → v1 open=10 closed=7, v2 open=8 closed=0, Ideas open=2 closed=0 — matches. `gh issue list -R sahildave/skilltopia-backup --state all` still returns 4: the epic #65 and children #75–#77, held back by design until the epic closes (recorded in the backup #76 comment).                     |
+| Mapping table committed, covering every transferred issue                            | verified                                                   | `docs/archive/backup-repo/README.md` maps 60 transferred issues; the thirteen skipped numbers are now annotated there — nine are the merged PRs (#16, #18, #20, #29, #35, #61, #62, #63, #64, all `merged: true` via `gh api repos/sahildave/skilltopia-backup/pulls/<n>`) and four (#24–#27) were deleted before the migration (`HTTP 410`). |
+
+## 77 — Verify cutover & retire
+
+Backup #77 carries no execution comment. These rows are re-derived here for the first time.
+
+| Criterion                                           | Status                  | Evidence                                                                                                                                                                                                                                                                                                                                                                         |
+| --------------------------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Production SHA = merge commit                       | **not verified**        | Needs Vercel deployment inspection; no record on the issue and nothing in the repo pins it.                                                                                                                                                                                                                                                                                      |
+| Smoke test: trending skills carry categories        | verified                | `curl -sS 'https://skilltopia.coduo.co/api/skills?view=trending&page=0&per_page=10'` → 10 of 10 records have a non-empty `categories`.                                                                                                                                                                                                                                           |
+| One post-merge scheduled ingest concludes `success` | **not met yet**         | `gh run list -R sahildave/skilltopia --workflow=ingest.yml` — the five most recent runs are `cancelled` (2026-09-02, on `bf718e0`) and four `failure` runs on the pre-merge `9506ea9`. No post-merge success has been observed.                                                                                                                                                  |
+| Backup archived; its schedules stopped              | verified                | `gh repo view sahildave/skilltopia-backup --json isArchived` → `true`.                                                                                                                                                                                                                                                                                                           |
+| Local `origin` → public repo, no `public` remote    | **not done**            | `git remote -v` in this checkout still has `origin` on `skilltopia-backup.git` and a separate `public` remote. Left alone deliberately: this branch has not been pushed yet, and repointing `origin` mid-run redirects that push. Do it by hand once the branch has landed: `git remote set-url origin https://github.com/sahildave/skilltopia.git && git remote remove public`. |
+| Branch protection on public `main`                  | partially verified      | `gh api repos/sahildave/skilltopia/branches/main/protection` returns a protection object with `allow_force_pushes: false` and `allow_deletions: false`; required reviews and required status checks are unset.                                                                                                                                                                   |
+| Deletion deferred to 2026-10-02, noted              | verified, recorded here | The archived backup repo is to be deleted on **2026-10-02**, after confirming nothing still references it. The off-GitHub mirror is the only copy that survives that deletion.                                                                                                                                                                                                   |
+
+## Open items
+
+1. Repoint `origin` at the public repo and drop the `public` remote (77, above).
+2. Watch for the first post-merge `Ingest (list + rotation)` run to conclude `success`;
+   the backup's copy is already archived, so nothing else is ingesting.
+3. Confirm the Vercel production SHA is the migration merge commit.
+4. Transfer backup #65 and #75–#77 once the epic closes, and extend the mapping table.
+5. 2026-10-02: delete `sahildave/skilltopia-backup`.

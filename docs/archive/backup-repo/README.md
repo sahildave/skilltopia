@@ -9,6 +9,15 @@ milestones and labels, live off-GitHub in the maintainer's backup archive.
 
 Issue numbers changed on transfer (the public repo's PRs already occupied #1–#14).
 
+The table below skips thirteen backup numbers, and all thirteen are accounted for:
+
+- **Pull requests, not issues** (GitHub shares one number sequence between them; PRs
+  cannot be transferred, so they live only in the off-GitHub archive): #16, #18, #20,
+  #29, #35, #61, #62, #63, #64 — the nine merged PRs, all merged.
+- **Deleted before the migration**, so nothing remained to transfer: #24, #25, #26, #27.
+
+Nothing was lost.
+
 ## Issue number mapping (old → new)
 
 | Backup # | Public # | Title                                                                                                        |
@@ -79,8 +88,3 @@ Issue numbers changed on transfer (the public repo's PRs already occupied #1–#
 | 77       | 79       | Verify cutover & retire backup: smoke test, ingest green, archive, delete 2026-10-02                         |
 
 The consolidation epic (backup #65 → #76 here) and its children were transferred after the epic closed.
-
-Gaps in the backup numbering are the 10 pull requests (which share the issue number
-space and were archived off-GitHub, not transferred) and backup #65/#75-#77, the
-consolidation epic and its children. All numbers in the left column are backup-repo
-issue numbers; the right column is this repo.

@@ -59,8 +59,8 @@
 
 | ID | Task | Status | Dependencies |
 | --- | --- | --- | --- |
-| 75 | Preflight & publish: snapshot, audit, fix CI secret, merge to public main | awaiting_acceptance | - |
-| 76 | Tracker migration: export PR/issue archive, transfer issues + milestones | pending | 75 |
+| 75 | Preflight & publish: snapshot, audit, fix CI secret, merge to public main | passed | - |
+| 76 | Tracker migration: export PR/issue archive, transfer issues + milestones | awaiting_acceptance | 75 |
 | 77 | Verify cutover & retire backup: smoke test, ingest green, archive, delete 2026-10-02 | pending | 76 |
 
 

@@ -39,23 +39,23 @@ Issue numbers changed on transfer (the public repo's PRs already occupied #1–#
 | 32       | 41       | Release CI hardening + updater-key verification                                                              |
 | 33       | 42       | App-shell integration: controller + scheduler + UpdateDialog in App.tsx                                      |
 | 34       | 43       | Manual check: native menu + command-palette entries                                                          |
-| 36       | 44       | # Repo owner avatar on catalog skill card                                                                    |
-| 37       | 45       | # GitHub Sponsors                                                                                            |
-| 38       | 46       | # macOS Developer ID signing and notarization                                                                |
-| 39       | 47       | # Windows code signing                                                                                       |
-| 40       | 48       | # Public Backend API readiness and privacy                                                                   |
-| 41       | 49       | # ProductHunt launch                                                                                         |
-| 42       | 50       | # Mac App Store distribution                                                                                 |
-| 43       | 51       | # Meilisearch full-corpus keyword (evolve to stack A)                                                        |
-| 44       | 52       | # Grow enrichment budget toward 2K+                                                                          |
-| 45       | 53       | # Analytics and install-history snapshots                                                                    |
-| 46       | 54       | # Compare skills                                                                                             |
-| 47       | 55       | # Project-scoped installed skills                                                                            |
-| 48       | 56       | # Local query embedding (remove Qdrant inference from hot path)                                              |
-| 49       | 57       | # Search performance: backend critical path                                                                  |
-| 50       | 58       | # Search performance: progressive keyword-first results                                                      |
-| 51       | 59       | # Hidden Gems and growth discovery rails                                                                     |
-| 52       | 60       | # Cross-ecosystem AI Capability index                                                                        |
+| 36       | 44       | Repo owner avatar on catalog skill card                                                                      |
+| 37       | 45       | GitHub Sponsors                                                                                              |
+| 38       | 46       | macOS Developer ID signing and notarization                                                                  |
+| 39       | 47       | Windows code signing                                                                                         |
+| 40       | 48       | Public Backend API readiness and privacy                                                                     |
+| 41       | 49       | ProductHunt launch                                                                                           |
+| 42       | 50       | Mac App Store distribution                                                                                   |
+| 43       | 51       | Meilisearch full-corpus keyword (evolve to stack A)                                                          |
+| 44       | 52       | Grow enrichment budget toward 2K+                                                                            |
+| 45       | 53       | Analytics and install-history snapshots                                                                      |
+| 46       | 54       | Compare skills                                                                                               |
+| 47       | 55       | Project-scoped installed skills                                                                              |
+| 48       | 56       | Local query embedding (remove Qdrant inference from hot path)                                                |
+| 49       | 57       | Search performance: backend critical path                                                                    |
+| 50       | 58       | Search performance: progressive keyword-first results                                                        |
+| 51       | 59       | Hidden Gems and growth discovery rails                                                                       |
+| 52       | 60       | Cross-ecosystem AI Capability index                                                                          |
 | 53       | 61       | Skill taxonomy + faceted semantic search                                                                     |
 | 54       | 62       | Finalize the skill taxonomy slugs                                                                            |
 | 55       | 63       | Expose categories in the search API response                                                                 |
@@ -75,3 +75,8 @@ Issue numbers changed on transfer (the public repo's PRs already occupied #1–#
 | 74       | 75       | Retire the backup repo: archive now, delete 2026-10-02; normalize remotes                                    |
 
 The consolidation epic itself (backup #65, with children #75-#77) transfers after it closes.
+
+Gaps in the backup numbering are the 10 pull requests (which share the issue number
+space and were archived off-GitHub, not transferred) and backup #65/#75-#77, the
+consolidation epic and its children. All numbers in the left column are backup-repo
+issue numbers; the right column is this repo.

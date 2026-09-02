@@ -30,7 +30,8 @@ run if the config is left with an unreplaced key or endpoint.
 
 Add these secrets (Settings → Secrets and variables → Actions):
 
-- `TAURI_SIGNING_PRIVATE_KEY`: Content of `~/.tauri/skilltopia.key`
+- `TAURI_PRIVATE_KEY`: Content of `~/.tauri/skilltopia.key` (the workflow maps
+  this store secret to the `TAURI_SIGNING_PRIVATE_KEY` env var Tauri v2 reads)
 - `TAURI_SIGNING_PRIVATE_KEY_PASSWORD`: Password for the private key
 
 The release workflow requires both secret names before building updater

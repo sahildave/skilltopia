@@ -61,7 +61,7 @@
 | --- | --- | --- | --- |
 | 75 | Preflight & publish: snapshot, audit, fix CI secret, merge to public main | passed | - |
 | 76 | Tracker migration: export PR/issue archive, transfer issues + milestones | passed | 75 |
-| 77 | Verify cutover & retire backup: smoke test, ingest green, archive, delete 2026-10-02 | awaiting_acceptance | 76 |
+| 77 | Verify cutover & retire backup: smoke test, ingest green, archive, delete 2026-10-02 | passed | 76 |
 
 
 <!-- /afk:progress:65 -->

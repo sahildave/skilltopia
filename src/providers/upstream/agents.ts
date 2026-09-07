@@ -1,5 +1,5 @@
 /**
- * Vendored from https://github.com/vercel-labs/skills/blob/435076e78988e1e6ec40d00b0b1d76bdbbc5419a/src/agents.ts
+ * Vendored from https://github.com/vercel-labs/skills/blob/1682051d48c34f5eb135e6475c1a965dce05e820/src/agents.ts
  * MIT License — do not edit by hand; regenerate via scripts/generate-provider-registry.mjs
  */
 import { homedir } from 'os';

@@ -13,14 +13,33 @@ defaultChecks:
   - npm run ast:lint
   - npm run format:check
   - npm run rust:fmt:check
+  # `rust:fmt:check` does not compile anything. Without this line the 31 crates
+  # under src-tauri had NO in-lane compile coverage once rust:clippy moved out,
+  # and the first sign of a broken build was a serialised integration rollback.
+  # `cargo check --all-targets` is the cheap half of clippy: it type-checks
+  # without running the lint passes or producing a binary.
+  - npm run rust:check
   - npm run test:run
 
-# The post-merge set. A task that narrows no `checks` resolves them to
-# `defaultChecks`, and `postMergeChecks` is `task.checks u baselineChecks`, so
-# the union still runs `check:all` in full at every task's integration — no
-# coverage is lost, it just stops running five times over. Kept as `check:all`
-# rather than the two cargo lines so this list cannot drift from the script.
+# `baselineChecks` feeds THREE gates and must be self-sufficient in all of them:
+#
+#   1. the branch-cut baseline, which runs `baselineChecks ?? defaultChecks`
+#      ALONE (afk-claude scripts/auto.mjs);
+#   2. every task's post-merge gate, `task.checks u baselineChecks`
+#      (scripts/integrate.mjs) — and a task that narrows its own `checks:` does
+#      NOT get `defaultChecks` there;
+#   3. the closeout fix gate, again `baselineChecks ?? defaultChecks` alone.
+#
+# So it repeats the lane commands rather than relying on a union with
+# `defaultChecks`. That repetition is free at integration (postMergeChecks is a
+# Set union) and load-bearing in gates 1 and 3. An earlier version of this file
+# listed only the hoisted command, which left the branch-cut baseline running
+# that command and nothing else.
 baselineChecks:
+  # `check:all` is a SUPERSET of the lane list above (it runs those six plus
+  # design:check, rust:clippy and rust:test), so it is self-sufficient for the
+  # branch-cut baseline and the closeout gate on its own and the lane commands
+  # are not repeated here.
   - npm run check:all
 
 # Most scripts here run through `infisical run`, so a lane may need env wiring

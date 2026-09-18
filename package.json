@@ -37,6 +37,7 @@
     "test:coverage": "vitest run --coverage",
     "rust:fmt": "source ~/.cargo/env && cd src-tauri && cargo fmt",
     "rust:fmt:check": "source ~/.cargo/env && cd src-tauri && cargo fmt --check",
+    "rust:check": "source ~/.cargo/env && cd src-tauri && cargo check --all-targets",
     "rust:clippy": "source ~/.cargo/env && cd src-tauri && cargo clippy -- -D warnings",
     "rust:clippy:fix": "source ~/.cargo/env && cd src-tauri && cargo clippy --fix --allow-dirty",
     "rust:test": "source ~/.cargo/env && cd src-tauri && cargo test",

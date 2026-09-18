@@ -1,8 +1,25 @@
 # How this stack is verified. Human-edited, committed, read-only to the runner.
 # Everything commented out below is optional — uncomment a line to use it.
 
+# The per-lane gate: every lane runs this, in parallel. `check:all` is nine
+# commands behind one name, and the two cargo steps dominate it — `rust:clippy`
+# and `rust:test` compile the whole crate, so at maxParallel 5 the machine ran
+# five of them at once. That is the load spike that reads as a flaky baseline
+# rather than as contention. The lane keeps everything that is cheap and
+# per-diff; see baselineChecks below for the rest.
 defaultChecks:
-  - npm run check:all
+  - npm run typecheck
+  - npm run lint
+  - npm run ast:lint
+  - npm run format:check
+  - npm run rust:fmt:check
+  - npm run test:run
+
+# The post-merge set. A task that narrows no `checks` resolves them to
+# `defaultChecks`, and `postMergeChecks` is `task.checks u baselineChecks`, so
+# the union still runs `check:all` in full at every task's integration — no
+# coverage is lost, it just stops running five times over. Kept as `check:all`
+# rather than the two cargo lines so this list cannot drift from the script.
 baselineChecks:
   - npm run check:all
 

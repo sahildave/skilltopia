@@ -74,10 +74,15 @@ agent:
 #
 # vercel:nextjs is deliberately NOT offered — this app is Vite + Tauri, and that
 # skill would only mislead. The Vercel skills here are for the Backend API under api/.
+# `vercel:*` names dropped 2026-09-21: `afk stack lint` had them dead. They name the
+# OFFICIAL `vercel` plugin, which this system deliberately does not enable anywhere
+# (stack-markers.yaml records the refusal). `react-best-practices` has a hosted
+# equivalent and was re-pointed at it; `nextjs`, `shadcn` and `vercel-functions` do
+# not, so they are gone rather than silently absent.
 roles:
   implementer:
     always: [implement, karpathy-guidelines]
-    offer: [vercel:vercel-functions, vercel:shadcn]
+    offer: []
     notes: 'This project uses Supabase. Write every schema change as a migration file under supabase/migrations/. Do not change the database from the dashboard.'
   integrator:
     offer: [resolving-merge-conflicts]
@@ -85,7 +90,7 @@ roles:
   #   always: []
   #   offer:  []
   verifier:
-    offer: [diagnosing-bugs, vercel:react-best-practices]
+    offer: [diagnosing-bugs, "vercel-react:vercel-react"]
   # supervisor:
   #   always: []
   #   offer:  []

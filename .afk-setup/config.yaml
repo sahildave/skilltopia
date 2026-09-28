@@ -54,6 +54,16 @@ worktreeSetup:
 
 maxParallel: 5
 
+# Disk the runner checks for before the baseline (afk-claude #144). The default
+# is 2 GiB a lane, sized for Node with linked node_modules; here `src-tauri/target` in the main checkout measured 11 GB (`du -sh`, 2026-09-28), and lanes
+# no longer link it (see src-tauri/.gitignore), so every lane builds its own.
+# Below maxParallel × diskPerLaneBytes free the run warns and continues; below
+# diskFloorBytes it refuses. The floor is one lane's worth, because under that
+# not even one lane can finish a cargo build, and a full disk mid-run is what
+# killed github-projects #865 and #874.
+diskPerLaneBytes: 12000000000
+diskFloorBytes: 12000000000
+
 # Which top-level keys of a protected JSON file a lane may edit. The default
 # below is applied when this key is absent; `package.json: []` reverts every
 # edit, as the runner did before. A reverted package.json or lockfile blocks the

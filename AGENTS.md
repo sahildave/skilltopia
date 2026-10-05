@@ -6,6 +6,25 @@ This repository is a template with sensible defaults for building Tauri React ap
 
 **Chrome-first UI:** Day-to-day React work runs in Chrome via `npm run dev` / `dev:web` (TARGET=web). Use Tauri for filesystem, install, opener, and desktop chrome. See `docs/developer/web-and-desktop.md`. Shared UI imports only `@platform` / `@catalog` — never `@tauri-apps/*` on those paths.
 
+## Launch status: pre-launch
+
+**Status: pre-launch.** Set 2026-10-05. Sahil changes this section on launch day; no
+agent does.
+
+Skilltopia has no end users and no production data worth preserving. Until this section
+changes:
+
+- Do not write backfills, compatibility shims, deprecation paths, dual-write periods or
+  feature flags to protect existing data or existing end users. Change the schema or the
+  behaviour directly. A schema change still goes through the repo's normal migration
+  files; what you skip is preserving or converting old rows.
+- Do not reject or water down a proposal because of its effect on existing end users.
+  There are none.
+- Prefer the simple design that would need rework at scale over the durable one that
+  costs time now.
+- This relaxes nothing else: the quality gate, security, billing correctness and every
+  human gate apply as written.
+
 ## Vocabulary
 
 - **Backend API**: The Vercel-hosted HTTP API under `api/`. It owns all secrets and env (skills.sh auth, Supabase, Qdrant, AI provider keys). The Tauri desktop app and web UI never hold those credentials; they only call the Backend API.
